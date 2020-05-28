@@ -5,13 +5,10 @@
 ![Travis (.org) branch](https://img.shields.io/travis/ahmetb/kubectx/master.svg)
 ![Proudly written in Bash](https://img.shields.io/badge/written%20in-bash-ff69b4.svg)
 
+
 This repository provides both `kubectx` and `kubens` tools.
 [Install &rarr;](#installation)
 
-> **🥳📰 NEWS:** With v0.9.0 `kubectx` and `kubens` **are now rewritten in Go**.
-> (Don't worry, our lovely **bash** versions are still available!) Please test
-> this new Go binaries by downloading them from
-> [**Releases &rarr;**](https://github.com/ahmetb/kubectx/releases)
 
 **`kubectx`** helps you switch between clusters back and forth:
 ![kubectx demo GIF](img/kubectx-demo.gif)
@@ -90,11 +87,6 @@ Active namespace is "default".
 
 ## Installation
 
-> **🥳📰 NEWS:** With v0.9.0 `kubectx` and `kubens` **are now rewritten in Go**.
-> (Don't worry, our lovely **bash** versions are still available!) Please test
-> this new Go binaries by downloading them from
-> [**Releases &rarr;**](https://github.com/ahmetb/kubectx/releases)
-
 There are several installation options:
 
 - As kubectl plugins (macOS/Linux)
@@ -102,9 +94,9 @@ There are several installation options:
   - Homebrew (recommended)
   - MacPorts
 - Linux
-  - Manual installation/upgrades
+  - manual installation/upgrades
   - Arch Linux
-  - Debian
+  - Debian/Ubuntu
 
 ### Kubectl Plugins (macOS and Linux)
 
@@ -150,16 +142,16 @@ them to any POSIX environment that has Bash installed.
   - or save them to a directory, then create symlinks to `kubectx`/`kubens` from
     somewhere in your `PATH`, like `/usr/local/bin`
 - Make `kubectx` and `kubens` executable (`chmod +x ...`)
-- Install bash/zsh/fish [completion scripts](completion/).
-  - For zsh:
-    The completion scripts have to be in a path that belongs to `$fpath`. Either link or copy them to an existing folder.
+- Install bash/zsh/fish [completion scripts](completion/).  
+  - For zsh:  
+    The completion scripts have to be in a path that belongs to `$fpath`. Either link or copy them to an existing folder.  
     If using oh-my-zsh you can do as follows:
     ```bash
     mkdir -p ~/.oh-my-zsh/completions
     chmod -R 755 ~/.oh-my-zsh/completions
     ln -s /opt/kubectx/completion/kubectx.zsh ~/.oh-my-zsh/completions/_kubectx.zsh
     ln -s /opt/kubectx/completion/kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
-    ```
+    ```  
     Note that the leading underscore seems to be a convention. If completion doesn't work, add `autoload -U compinit && compinit` to your `.zshrc` (similar to [`zsh-completions`](https://github.com/zsh-users/zsh-completions/blob/master/README.md#oh-my-zsh)).
     If not using oh-my-zsh, you could link to `/usr/share/zsh/functions/Completion` (might require sudo), depending on the `$fpath` of your zsh installation.
     In case of error, calling `compaudit` might help.
@@ -170,8 +162,8 @@ them to any POSIX environment that has Bash installed.
     ln -sf ~/.kubectx/completion/kubens.bash $COMPDIR/kubens
     ln -sf ~/.kubectx/completion/kubectx.bash $COMPDIR/kubectx
     cat << FOE >> ~/.bashrc
-
-
+    
+    
     #kubectx and kubens
     export PATH=~/.kubectx:\$PATH
     FOE
@@ -199,7 +191,7 @@ Available as official Arch Linux package. Install it via:
 sudo pacman -S kubectx
 ```
 
-#### Debian
+#### Debian/Ubuntu
 
 Available as a Debian package for [Debian Buster (testing)](https://packages.debian.org/buster/kubectx), [Sid (unstable)](https://packages.debian.org/sid/kubectx) (_note: if you are unfamiliar with Debian release process and how to enable testing/unstable repos, check the [Debian Wiki](https://wiki.debian.org/DebianReleases)_):
 
@@ -218,11 +210,6 @@ with fuzzy searching, you just need to [install
 ![kubectx interactive search with fzf](img/kubectx-interactive.gif)
 
 If you have `fzf` installed, but want to opt out of using this feature, set the environment variable `KUBECTX_IGNORE_FZF=1`.
-
-If you want to keep `fzf` interactive mode but need the default behavior of the command, you can do it using Unix composability:
-```
-kubectx | cat
-```
 
 
 -----

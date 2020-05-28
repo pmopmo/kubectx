@@ -1,12 +1,7 @@
 #!/usr/bin/env bats
 
-COMMAND="${COMMAND:-$BATS_TEST_DIRNAME/../kubens}"
-
-# TODO(ahmetb) remove this after bash implementations are deleted
+COMMAND="${BATS_TEST_DIRNAME}/../kubens"
 export KUBECTL="$BATS_TEST_DIRNAME/../test/mock-kubectl"
-
-# short-circuit namespace querying in kubens go implementation
-export _MOCK_NAMESPACES=1
 
 load common
 
@@ -26,6 +21,7 @@ load common
   run ${COMMAND}
   echo "$output"
   [[ "$status" -eq 1 ]]
+  [[ "$output" = *"current-context is not set"* ]]
 }
 
 @test "list namespaces" {
